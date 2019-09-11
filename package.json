@@ -1,5 +1,5 @@
 {
-  "name": "tcplock-node",
+  "name": "tcp-lock",
   "version": "1.0.0",
   "description": "Basic centralised lock service for NodeJS via TCP socket communication",
   "main": "index.js",
@@ -8,9 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shrotavre/tcplock-node.git"
+    "url": "git+https://github.com/shrotavre/tcp-lock.git"
   },
   "keywords": [
+    "socket programming",
     "locking",
     "nodejs",
     "node",
@@ -19,8 +20,8 @@
   "author": "Avreghly Barra <avreghly@gmailcom>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shrotavre/tcplock-node/issues"
+    "url": "https://github.com/shrotavre/tcp-lock/issues"
   },
-  "homepage": "https://github.com/shrotavre/tcplock-node#readme",
+  "homepage": "https://github.com/shrotavre/tcp-lock#readme",
   "dependencies": {}
 }
