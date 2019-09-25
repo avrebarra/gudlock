@@ -1,7 +1,8 @@
 const server = require('./index')
+const defaults = require('../defaults')
 
-const DEFAULT_HOST = '127.0.0.1'
-const DEFAULT_PORT = 6969
+const DEFAULT_HOST = defaults.DEFAULT_HOST
+const DEFAULT_PORT = defaults.DEFAULT_PORT
 
 server.listen(DEFAULT_PORT, DEFAULT_HOST)
 
