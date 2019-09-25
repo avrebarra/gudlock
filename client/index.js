@@ -1,9 +1,9 @@
 const net = require('net')
 const defaults = require('../defaults')
 
-const client = new net.Socket()
-
 const _communicate = (payload) => {
+  const client = new net.Socket()
+
   return new Promise((resolve, reject) => {
     client.connect(defaults.DEFAULT_PORT, defaults.DEFAULT_HOST, () => {
       client.on('data', (data) => { client.destroy(); resolve(data.toString().trim()) })
