@@ -3,8 +3,6 @@ const locks = require('./utils/locks')
 
 const socketServer = net.createServer()
 
-const formatLockName = (lockName) => lockName.replace(' ', '_')
-
 socketServer.on('connection', (socket) => {
   socket.on('data', (data) => {
     // valid message format is case-sensitive texts splitted with '#' char.
@@ -13,17 +11,21 @@ socketServer.on('connection', (socket) => {
     const [command, params] = data.toString().trim().split('#')
     console.log(command, params)
 
-    var lockName, passphrase
+    var lockName, passphrase, response
 
     switch (command.toUpperCase()) {
       case 'LOCK':
         lockName = params
-        socket.write(locks.acquireLock(formatLockName(lockName)) + '\n')
+        response = locks.acquireLock(lockName) + '\n'
+
+        socket.write(response)
         break
 
       case 'RELEASE':
         [lockName, passphrase] = params.split(':')
-        socket.write(locks.releaseLock(formatLockName(lockName), passphrase) + '\n')
+        response = locks.releaseLock(lockName, passphrase) + '\n'
+
+        socket.write(response)
         break
     }
   })
