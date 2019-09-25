@@ -4,7 +4,7 @@ const acquireLock = (lockname) => {
   if (lockRegistry[lockname]) return 'FAIL'
 
   // generate lock passphrase from timestamp and register
-  const lock = (+new Date).toString(36)
+  const lock = (+new Date()).toString(36)
   lockRegistry[lockname] = lock
 
   return `OK#${lock}`
@@ -12,7 +12,7 @@ const acquireLock = (lockname) => {
 
 const releaseLock = (lockname, passphrase) => {
   if (!lockRegistry[lockname]) return 'OK#NO_CHANGE'
-  if (lockRegistry[lockname] && lockRegistry[lockname] != passphrase) return 'FAIL'
+  if (lockRegistry[lockname] && lockRegistry[lockname] !== passphrase) return 'FAIL'
 
   lockRegistry[lockname] = null
 

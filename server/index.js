@@ -11,7 +11,7 @@ socketServer.on('connection', (socket) => {
     // First part will be the command name, second part will be the params (lock key name)
     // Example: LOCK#NEW_REQUEST_REGISTER or RELEASE#NEW_REQUEST_REGISTER
     const [command, params] = data.toString().trim().split('#')
-    console.log(command, params);
+    console.log(command, params)
 
     var lockName, passphrase
 
@@ -19,12 +19,12 @@ socketServer.on('connection', (socket) => {
       case 'LOCK':
         lockName = params
         socket.write(locks.acquireLock(formatLockName(lockName)) + '\n')
-        break;
+        break
 
       case 'RELEASE':
         [lockName, passphrase] = params.split(':')
         socket.write(locks.releaseLock(formatLockName(lockName), passphrase) + '\n')
-        break;
+        break
     }
   })
 })
