@@ -9,7 +9,6 @@ socketServer.on('connection', (socket) => {
     // First part will be the command name, second part will be the params (lock key name)
     // Example: LOCK#NEW_REQUEST_REGISTER or RELEASE#NEW_REQUEST_REGISTER:PASS_PHRASE
     const [command, params] = data.toString().trim().split('#')
-    console.log(command, params)
 
     var lockName, passphrase, response
 
