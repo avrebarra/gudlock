@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Run Server Bin",
       "args": [
-        "${workspaceFolder}server/bin.js"
+        "${workspaceFolder}/server/bin.js"
       ]
     }
   ]
