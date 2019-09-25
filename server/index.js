@@ -18,6 +18,7 @@ socketServer.on('connection', (socket) => {
         response = locks.acquireLock(lockName) + '\n'
 
         socket.write(response)
+        socket.end()
         break
 
       case 'RELEASE':
@@ -25,6 +26,7 @@ socketServer.on('connection', (socket) => {
         response = locks.releaseLock(lockName, passphrase) + '\n'
 
         socket.write(response)
+        socket.end()
         break
     }
   })
