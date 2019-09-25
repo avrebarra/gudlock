@@ -1,4 +1,5 @@
 module.exports = {
   DEFAULT_HOST: '127.0.0.1',
-  DEFAULT_PORT: 6969
+  DEFAULT_PORT: 6969,
+  DEFAULT_LOCK_NAME: 'X3VuZGVmaW5lZA=='
 }
