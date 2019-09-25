@@ -1,6 +1,11 @@
 const net = require('net')
 const defaults = require('../defaults')
 
+const MAX_LOCK_ACQUIRING_RETRIES = 20
+const RETRY_DELAYS_MULTIPLIER = 10
+
+const _wait = async (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
 const _communicate = (payload) => {
   const client = new net.Socket()
 
@@ -19,19 +24,25 @@ const _makeReleaseFunc = (lockName, passphrase) => {
     const response = await _communicate(`RELEASE#${lockName}:${passphrase}`)
     const [status] = response.split('#')
 
-    console.log(status)
-
     if (status !== 'OK') { throw new Error('Unable to release lock!') }
   }
 }
 
 const lock = async (lockName = defaults.DEFAULT_LOCK_NAME) => {
-  const response = await _communicate(`LOCK#${lockName}`)
-  const [status, params] = response.split('#')
+  var retryCount = 0
 
-  if (status !== 'OK') { throw new Error('Unable to acquire lock!') }
+  while (true) {
+    const response = await _communicate(`LOCK#${lockName}`)
+    const [status, params] = response.split('#')
 
-  return _makeReleaseFunc(lockName, params)
+    if (status === 'OK') { return _makeReleaseFunc(lockName, params) }
+
+    if (retryCount < MAX_LOCK_ACQUIRING_RETRIES) {
+      await _wait(retryCount * RETRY_DELAYS_MULTIPLIER)
+    } else {
+      throw new Error('Unable to acquire lock!')
+    }
+  }
 }
 
 module.exports = { lock }
