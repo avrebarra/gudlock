@@ -1,9 +1,18 @@
 const server = require('../server/index')
 const defaults = require('../defaults')
 
-const DEFAULT_HOST = defaults.DEFAULT_HOST
-const DEFAULT_PORT = defaults.DEFAULT_PORT
+const _findargs = (name) => {
+  const args = process.argv.slice(2); const param = args.find((el) => el.startsWith(`--${name}`))
+  if (!param) return null
+  if (param.indexOf('=') === -1) return 'true'
+  return param.replace(`--${name}=`, '')
+}
 
-server.listen(DEFAULT_PORT, DEFAULT_HOST)
+const params = {
+  port: _findargs('port') || defaults.DEFAULT_PORT,
+  host: _findargs('host') || defaults.DEFAULT_HOST
+}
 
-console.log(`Serving on ${DEFAULT_HOST}:${DEFAULT_PORT}`)
+server.start(params)
+
+console.log(`Serving on ${params.host}:${params.port}`)

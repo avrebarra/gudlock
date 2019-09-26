@@ -4,13 +4,15 @@ const defaults = require('../defaults')
 const MAX_LOCK_ACQUIRING_RETRIES = 20
 const RETRY_DELAYS_MULTIPLIER = 10
 
+var _connectionParams = {}
+
 const _wait = async (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 const _communicate = (payload) => {
   const client = new net.Socket()
 
   return new Promise((resolve, reject) => {
-    client.connect(defaults.DEFAULT_PORT, defaults.DEFAULT_HOST, () => {
+    client.connect(_connectionParams.port || defaults.DEFAULT_PORT, _connectionParams.host || defaults.DEFAULT_HOST, () => {
       client.on('data', (data) => { client.destroy(); resolve(data.toString().trim()) })
 
       // Send payload to server
@@ -45,4 +47,6 @@ const lock = async (lockName = defaults.DEFAULT_LOCK_NAME) => {
   }
 }
 
-module.exports = { lock }
+const attach = (connectionParams = {}) => { _connectionParams = connectionParams }
+
+module.exports = { attach, lock }
