@@ -1,7 +1,7 @@
 {
   "name": "tcp-lock",
   "version": "1.0.0",
-  "description": "Basic centralised lock service for NodeJS via TCP socket communication",
+  "description": "Centralised lock via TCP socket communication",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,9 +11,9 @@
     "url": "git+https://github.com/shrotavre/tcp-lock.git"
   },
   "keywords": [
-    "socket programming",
-    "locking",
     "nodejs",
+    "locking",
+    "socket programming",
     "node",
     "lock"
   ],
