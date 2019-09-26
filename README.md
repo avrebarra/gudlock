@@ -25,17 +25,17 @@ $ npm install gudlock
 After deciding up how [lock-server is run](https://github.com/shrotavre/gudlock#setting-up-lock-server), using locks is as simple as these:
 
 ```js
-import { client as tcplock } from 'gudlock'
+import { client as gudlock } from 'gudlock'
 
 // A. Prerequisites
 // Do this if you set your server in custom host:port
-tcplock.attach({ port: 8827, host: '127.0.0.1' })
+gudlock.attach({ port: 8827, host: '127.0.0.1' })
 
 // B. Using Locks and Releasing
 // acquiring lock will return function to release lock
 // releasing lock is done by calling returned function
 
-const release = await tcplock.lock()
+const release = await gudlock.lock()
 console.log('important processing is running...')
 await release()
 ```
@@ -45,7 +45,7 @@ Its also possible to give the locks name, so its possible to have >1 lock active
 // specify lock name/identifier on acquire. 
 // to release the lock, no need to specify lock's name
 
-const release = await tcplock.lock('LOCK_NAME_HERE')
+const release = await gudlock.lock('LOCK_NAME_HERE')
 
 console.log('important processing is running...')
 
