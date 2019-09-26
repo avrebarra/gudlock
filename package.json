@@ -1,5 +1,5 @@
 {
-  "name": "tcp-lock",
+  "name": "gudlock",
   "version": "1.0.0",
   "description": "Centralised lock via TCP socket communication",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shrotavre/tcp-lock.git"
+    "url": "git+https://github.com/shrotavre/gudlock.git"
   },
   "keywords": [
     "nodejs",
@@ -20,9 +20,9 @@
   "author": "Avreghly Barra <avreghly@gmailcom>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shrotavre/tcp-lock/issues"
+    "url": "https://github.com/shrotavre/gudlock/issues"
   },
-  "homepage": "https://github.com/shrotavre/tcp-lock#readme",
+  "homepage": "https://github.com/shrotavre/gudlock#readme",
   "dependencies": {},
   "devDependencies": {
     "eslint": "^6.4.0",

@@ -1,5 +1,5 @@
 <div class="info">
-  <h1 class="name" align="center">tcp-lock</h1>
+  <h1 class="name" align="center">gudlock</h1>
 </div>
 
 
@@ -14,18 +14,18 @@ This made to tackles:
 
 ## Installation
 
-Install `tcp-lock` using the [npm](https://www.npmjs.com/) package manager:
+Install `gudlock` using the [npm](https://www.npmjs.com/) package manager:
 
 ```sh
-$ npm install tcp-lock
+$ npm install gudlock
 ```
 
 ## User Guide
 
-After deciding up how [lock-server is run](https://github.com/shrotavre/tcp-lock#setting-up-lock-server), using locks is as simple as these:
+After deciding up how [lock-server is run](https://github.com/shrotavre/gudlock#setting-up-lock-server), using locks is as simple as these:
 
 ```js
-import { client as tcplock } from 'tcp-lock'
+import { client as tcplock } from 'gudlock'
 
 // A. Prerequisites
 // Do this if you set your server in custom host:port
@@ -54,7 +54,7 @@ await release()
 
 ### Setting up Lock-Server
 
-This will add package called `tcp-lock` in your project. There are two options on using this package depending on where you want to run the locks-server:
+This will add package called `gudlock` in your project. There are two options on using this package depending on where you want to run the locks-server:
 1. Run server inside a node app
 2. Run server as separate node app
 
@@ -69,7 +69,7 @@ This method will attach server to process & runtime of another node app (parent 
 ```js
 // basically include and start listening in node-app's entry point
 
-import { server } from 'tcp-lock'
+import { server } from 'gudlock'
 
 server.start({ port: 8827, host: '127.0.0.1' })
 
@@ -86,10 +86,10 @@ This method will start server as individual process & runtime.
 
 ```bash
 # run this command 
-$ node node_modules/tcp-lock/bin/server
+$ node node_modules/gudlock/bin/server
 
 # to specify custom host:port 
-$ node node_modules/tcp-lock/bin/server --port=7676 --host=128.23.12.3
+$ node node_modules/gudlock/bin/server --port=7676 --host=128.23.12.3
 
 # this will start a new node process
 # default port is 6969 and ip 127.0.0.1

@@ -36,7 +36,7 @@ const _tcpserver = net
     })
   })
 
-// Start tcp-lock server
+// Start gudlock server
 const start = ({ port = DEFAULT_PORT, host = DEFAULT_HOST } = {}) => {
   return _tcpserver.listen(port, host)
 }
