@@ -27,6 +27,9 @@ After setting up [how lock-server is run](https://github.com/shrotavre/tcp-lock#
 ```js
 import { client as tcplock } from 'tcp-lock'
 
+// OPTIONAL. only needed if you specified custom host:port
+tcplock.attach({ port: 8827, host: '127.0.0.1' })
+
 // acquire lock
 const release = await tcplock.lock()
 
@@ -67,7 +70,7 @@ This method will attach server to process & runtime of another node app (parent 
 
 import { server } from 'tcp-lock'
 
-server.listen(8827, '127.0.0.1')
+server.start({ port: 8827, host: '127.0.0.1' })
 
 console.log(`Lock server running on 127.0.0.1:8827`)
 ```
@@ -82,10 +85,13 @@ This method will start server as individual process & runtime.
 
 ```bash
 # run this command 
-$ node node_modules/eslint/bin/server
+$ node node_modules/tcp-lock/bin/server
 
-# this will start a new process in
-# default port and ip (127.0.0.1:6969)
+# to specify custom host:port 
+$ node node_modules/tcp-lock/bin/server --port=7676 --host=128.23.12.3
+
+# this will start a new node process
+default port and ip (127.0.0.1:6969)
 ```
 
 ## Contributing
