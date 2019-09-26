@@ -4,7 +4,7 @@
 
 
 ## Summary
-Add centralised lock support in NodeJS. Basically, a lock that just works, it's using TCP communication underneath.
+Add centralised lock support in NodeJS. Basically, a lock that just works, it's using TCP communication underneath. Leveraging NodeJS Promise.
 
 This made to tackles:
 - I can't f$%W! (frankly) use Redis
@@ -22,20 +22,21 @@ $ npm install tcp-lock
 
 ## User Guide
 
-After setting up [how lock-server is run](https://github.com/shrotavre/tcp-lock#setting-up-lock-server), to use locks is as simple as these:
+After deciding up how [lock-server is run](https://github.com/shrotavre/tcp-lock#setting-up-lock-server), using locks is as simple as these:
 
 ```js
 import { client as tcplock } from 'tcp-lock'
 
-// OPTIONAL. only needed if you specified custom host:port
+// A. Prerequisites
+// Do this if you set your server in custom host:port
 tcplock.attach({ port: 8827, host: '127.0.0.1' })
 
-// acquire lock
+// B. Using Locks and Releasing
+// acquiring lock will return function to release lock
+// releasing lock is done by calling returned function
+
 const release = await tcplock.lock()
-
 console.log('important processing is running...')
-
-// release the lock
 await release()
 ```
 
@@ -91,7 +92,7 @@ $ node node_modules/tcp-lock/bin/server
 $ node node_modules/tcp-lock/bin/server --port=7676 --host=128.23.12.3
 
 # this will start a new node process
-default port and ip (127.0.0.1:6969)
+# default port is 6969 and ip 127.0.0.1
 ```
 
 ## Contributing
