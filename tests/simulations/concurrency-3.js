@@ -1,18 +1,15 @@
+const { client, server } = require('../../')
+
 // Start server
+const defaults = require('../../defaults')
 
-// const server = require('../../server')
+const DEFAULT_HOST = defaults.DEFAULT_HOST
+const DEFAULT_PORT = defaults.DEFAULT_PORT
 
-// const defaults = require('../../defaults')
-
-// const DEFAULT_HOST = defaults.DEFAULT_HOST
-// const DEFAULT_PORT = defaults.DEFAULT_PORT
-
-// server.listen(DEFAULT_PORT, DEFAULT_HOST)
-// console.log(`Serving on ${DEFAULT_HOST}:${DEFAULT_PORT}`)
+server.listen(DEFAULT_PORT, DEFAULT_HOST)
+console.log(`Serving on ${DEFAULT_HOST}:${DEFAULT_PORT}`)
 
 // Start clients
-const client = require('../../client')
-
 var iteration = 0
 var onlineCount = 0
 const iterationClaims = {}
