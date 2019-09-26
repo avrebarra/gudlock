@@ -4,7 +4,7 @@
 
 
 ## Summary
-Add centralised lock support in NodeJS. Basically, a lock that just works, it's using TCP communication underneath. Leveraging NodeJS Promise.
+Add centralised lock support in NodeJS. Underneath, its a simple lock system using TCP communication. Also on Promise. Good luck!
 
 This made to tackles:
 - I can't f$%W! (frankly) use Redis
